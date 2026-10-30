@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>One Ahmedabad: Problem Statement PS000023</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FFFFFF; --ink:#16171A; --muted:#6A6D75; --line:#D9DADF; --accent:#1F3FD1;
+  --font:"Archivo",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--bg:#111318;--ink:#ECEDEF;--muted:#9A9DA6;--line:#2A2D35;--accent:#8CA0FF;color-scheme:dark}
+}
+:root[data-theme="dark"]{--bg:#111318;--ink:#ECEDEF;--muted:#9A9DA6;--line:#2A2D35;--accent:#8CA0FF;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 16px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 18px/1.55 var(--font);-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:5}
+.page{max-width:1040px;margin:0 auto;padding:0 22px}
+h1,h2,p,ul{margin:0}
+ul{padding:0;list-style:none}
+ 
+header{padding:56px 0 40px}
+.idline{color:var(--accent);font-weight:600;font-size:17px;margin-bottom:18px}
+h1{font-size:clamp(40px,8.4vw,84px);font-weight:800;line-height:1;letter-spacing:-.035em;max-width:14ch}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;margin-top:44px}
+.meta div{border-top:2px solid var(--ink);padding-top:10px}
+.meta small{display:block;color:var(--muted);font-size:15px}
+.meta b{font-weight:600}
+ 
+.row{display:grid;grid-template-columns:190px 1fr;gap:28px;border-top:1px solid var(--line);padding:34px 0 44px}
+.label{font-weight:600;font-size:16px;color:var(--muted)}
+.label span{position:sticky;top:calc(env(safe-area-inset-top,0px) + 18px);display:block}
+.lede{font-size:clamp(22px,3.4vw,30px);line-height:1.3;letter-spacing:-.01em;max-width:30ch}
+.pains{margin-top:26px;max-width:52ch}
+.pains li{padding:9px 0;border-top:1px solid var(--line)}
+.pains li:last-child{border-bottom:1px solid var(--line)}
+ 
+.switch{display:flex;gap:22px;margin-bottom:6px}
+.switch button{font:600 18px var(--font);background:none;border:0;border-bottom:3px solid transparent;color:var(--muted);padding:6px 0;cursor:pointer}
+.switch button[aria-pressed="true"]{color:var(--ink);border-color:var(--accent)}
+svg{display:block;width:100%;max-width:440px;height:auto;margin-top:8px;overflow:visible}
+svg text{fill:var(--ink);font:600 15px var(--font)}
+svg .t-bg{fill:var(--bg)}
+.old,.one{transition:opacity .35s}
+.one{opacity:0}
+.on .old{opacity:0}
+.on .one{opacity:1}
+.one path{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset .55s ease}
+.on .one path{stroke-dashoffset:0}
+.cap{margin-top:8px;font-weight:600}
+ 
+.users{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:0 28px}
+.users li{font-size:clamp(22px,3vw,28px);font-weight:600;line-height:1.2;letter-spacing:-.01em;padding:14px 0;border-top:1px solid var(--line)}
+.outs li{font-size:clamp(24px,4vw,36px);font-weight:800;letter-spacing:-.02em;line-height:1.15;padding:16px 0;border-top:1px solid var(--line)}
+.outs li:first-child{border-top:0;padding-top:0}
+footer{border-top:1px solid var(--line);padding:22px 0 48px;color:var(--muted);font-size:15px}
+.btn{display:inline-block;font:600 17px var(--font);background:var(--accent);color:var(--bg);border:1.5px solid var(--accent);border-radius:6px;padding:12px 18px;cursor:pointer;text-decoration:none}
+.btn.alt{background:none;color:var(--ink);border-color:var(--ink)}
+.btn.sm{font-size:15px;padding:8px 12px;margin-top:8px}
+.tryhead{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
+.field{display:block;margin-top:16px}
+.field span{display:block;font-weight:600;font-size:15px;color:var(--muted);margin-bottom:4px}
+input,select,textarea{width:100%;font:400 17px var(--font);color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:6px;padding:11px 12px}
+input:focus,select:focus,textarea:focus{outline:3px solid var(--accent);outline-offset:1px;border-color:var(--accent)}
+.svcs{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:18px 0 26px}
+.svcs button{font:600 16px var(--font);text-align:left;background:none;color:var(--ink);border:1.5px solid var(--line);border-radius:6px;padding:13px;cursor:pointer}
+.svcs button[aria-pressed="true"]{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
+.panel{border-top:2px solid var(--ink);padding-top:10px;max-width:560px}
+.req{border-top:1px solid var(--line);padding:14px 0}
+.req small{display:block;color:var(--muted);font-size:15px}
+.steps{display:flex;gap:4px;margin:10px 0 4px}
+.steps i{flex:1;height:5px;background:var(--line);border-radius:3px}
+.steps i.d{background:var(--accent)}
+.err,.ok{font-weight:600;padding-left:10px;margin-top:12px}
+.err{border-left:3px solid #D93025}
+.ok{border-left:3px solid var(--accent)}
+.err:empty{display:none}
+.note{color:var(--muted);font-size:15px;margin-top:18px;max-width:52ch}
+a:focus-visible,button:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+@media (max-width:760px){.row{grid-template-columns:1fr;gap:12px}.label span{position:static}header{padding-top:36px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
+.btn{font:600 17px var(--font);padding:13px 22px;background:var(--accent);color:var(--bg);border:2px solid var(--accent);border-radius:4px;text-decoration:none;cursor:pointer;display:inline-block}
+.btn.ghost{background:none;color:var(--accent)}
+.btn.sm{font-size:15px;padding:7px 14px;margin-top:10px}
+.cats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:14px 0 22px}
+.cats button{font:600 17px var(--font);text-align:left;padding:14px;border:1.5px solid var(--ink);background:none;color:var(--ink);border-radius:4px;cursor:pointer;min-height:54px}
+.cats button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+form{margin:0 0 28px;max-width:520px}
+label{display:block;font-weight:600;font-size:16px;margin:14px 0 4px}
+input,textarea{width:100%;font:400 17px var(--font);padding:11px 12px;border:1.5px solid var(--line);border-radius:4px;background:var(--bg);color:var(--ink)}
+textarea{min-height:96px;resize:vertical}
+input:focus,textarea:focus{outline:3px solid var(--accent);outline-offset:1px;border-color:var(--accent)}
+.hint{color:var(--muted);font-size:15px;margin-top:6px}
+.sub2{font-weight:600;margin:28px 0 8px}
+.trackrow{display:flex;gap:10px;max-width:520px}
+.trackrow .btn{padding:10px 18px;flex:none}
+.item{border-top:1px solid var(--line);padding:16px 0}
+.item:last-child{border-bottom:1px solid var(--line)}
+.item .top{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.item p{color:var(--muted);margin-top:4px}
+.steps{display:flex;gap:4px;margin:12px 0 6px;max-width:360px}
+.steps i{flex:1;height:6px;background:var(--line);border-radius:3px}
+.steps i.f{background:var(--accent)}
+.stat{font-weight:600;font-size:16px}
+.ok{border:2px solid var(--accent);padding:14px 16px;margin:0 0 24px;max-width:520px;border-radius:4px}
+[hidden]{display:none!important}
+header{position:relative;overflow:hidden}
+header>*:not(.jaali){position:relative}
+svg.jaali{position:absolute;right:-30px;top:0;width:min(62%,600px);max-width:none;height:100%;margin:0;opacity:.17;pointer-events:none;-webkit-mask-image:linear-gradient(to left,#000 25%,transparent);mask-image:linear-gradient(to left,#000 25%,transparent)}
+.jaali *{stroke:var(--accent);stroke-width:1.5;fill:none}
+.jaali .d{fill:var(--accent);stroke:none}
+.hero-stage{margin-top:34px}
+#stage{max-width:560px}
+.ln{stroke:var(--muted);stroke-width:1.5;fill:none}
+.ln2{stroke:var(--accent);stroke-width:2.5;fill:none}
+.key,.dot,.you{fill:var(--ink)}
+.hubr{fill:var(--accent)}
+.hubt{fill:var(--bg)!important}
+</style>
+</head>
+<body>
+<div class="page">
+<header>
+  <svg class="jaali" aria-hidden="true"><defs><pattern id="jl" width="64" height="64" patternUnits="userSpaceOnUse"><path d="M32 3L61 32L32 61L3 32Z"/><circle cx="32" cy="32" r="7"/><circle class="d" cx="0" cy="0" r="3"/><circle class="d" cx="64" cy="0" r="3"/><circle class="d" cx="0" cy="64" r="3"/><circle class="d" cx="64" cy="64" r="3"/></pattern></defs><rect width="100%" height="100%" fill="url(#jl)"/></svg>
+  <p class="idline">Problem statement PS000023</p>
+  <h1>One Ahmedabad Digital Citizen Services Platform</h1>
+  <div class="hero-stage" id="demo">
+    <div class="switch" role="group" aria-label="Compare today with the proposed platform">
+      <button id="bOld" aria-pressed="true">Today</button>
+      <button id="bOne" aria-pressed="false">One Ahmedabad</button>
+    </div>
+    <svg id="stage" viewBox="0 0 420 320" role="img" aria-label="A citizen connected to six municipal services, first through separate logins, then through one account"></svg>
+    <p class="cap" id="cap" aria-live="polite"></p>
+  </div>
+  <div class="meta">
+    <div><small>Industry</small><b>Ahmedabad Municipal Corporation</b></div>
+    <div><small>Sector</small><b>Smart Cities &amp; Urban Governance</b></div>
+  </div>
+  <a class="btn" href="#try" style="margin-top:36px">Try the platform</a>
+<div class="cta"><a class="btn" href="#complaints" id="goFile">File a complaint</a><a class="btn ghost" href="#complaints" id="goTrack">Track a complaint</a></div>
+</header>
+ 
+<section class="row" id="problem">
+  <div class="label"><span>The problem</span></div>
+  <div>
+    <p class="lede">Citizens currently access different municipal services through multiple portals and applications.</p>
+    <ul class="pains">
+      <li>Multiple user accounts</li>
+      <li>Fragmented service delivery</li>
+      <li>Poor citizen experience</li>
+      <li>Limited service visibility</li>
+    </ul>
+    <p class="pains" style="margin-top:22px;color:var(--muted)">There is a need for a unified platform providing a single point of access for complaints, payments, certificates, permits, public information, and service tracking.</p>
+  </div>
+</section>
+ 
+<section class="row" id="try">
+  <div class="label"><span>Try the platform</span></div>
+  <div>
+    <p class="lede" style="max-width:34ch">Create one account, then use every service from one dashboard.</p>
+    <div id="app" style="margin-top:26px"></div>
+    <p class="note">Prototype for demonstration. Requests are saved only in this browser and are not sent to Ahmedabad Municipal Corporation.</p>
+  </div>
+</section>
+ 
+<section class="row" id="complaints">
+  <div class="label"><span>Complaints</span></div>
+  <div>
+    <div class="switch" role="group" aria-label="View as"><button id="rC" aria-pressed="true">Citizen</button><button id="rD" aria-pressed="false">Department</button></div>
+    <p class="hint" id="mode"></p>
+    <div id="cView">
+      <p class="sub2" style="margin-top:18px">What do you want to report?</p>
+      <div class="cats" id="cats"></div>
+      <form id="form" hidden>
+        <p class="sub2" id="fTitle" style="margin-top:0"></p>
+        <label for="fWard">Ward or area</label><input id="fWard" required maxlength="80" autocomplete="off">
+        <label for="fText">What is the problem?</label><textarea id="fText" required maxlength="400"></textarea>
+        <p class="hint">Complaints are visible to everyone who opens this page. Do not enter phone numbers or personal details.</p>
+        <button class="btn" type="submit" style="margin-top:14px">Submit complaint</button>
+      </form>
+      <div class="ok" id="done" hidden></div>
+      <p class="sub2">Track a complaint</p>
+      <div class="trackrow"><input id="tId" placeholder="Complaint ID, for example OA-7K3M2" aria-label="Complaint ID" maxlength="20"><button class="btn" id="tGo">Track</button></div>
+      <div id="tOut"></div>
+      <p class="sub2">Your complaints</p>
+      <div id="mine"></div>
+    </div>
+    <div id="dView" hidden>
+      <p class="sub2" style="margin-top:18px">All complaints</p>
+      <div id="all"></div>
+    </div>
+  </div>
+</section>
+ 
+<section class="row" id="users">
+  <div class="label"><span>Users</span></div>
+  <ul class="users">
+    <li>Citizens</li>
+    <li>Citizen Service Centres</li>
+    <li>Municipal Departments</li>
+  </ul>
+</section>
+ 
+<section class="row" id="outcomes">
+  <div class="label"><span>Expected outcomes</span></div>
+  <ul class="outs">
+    <li>Single citizen account</li>
+    <li>Unified service dashboard</li>
+    <li>Digital service tracking</li>
+  </ul>
+</section>
+ 
+<footer>Source: Problem Statement Details, PS000023</footer>
+</div>
+ 
+<script>
+(function(){
+  var CATS=["Garbage collection","Water supply","Road damage","Streetlight","Drainage","Other"];
+  var STEPS=["Submitted","Assigned","In progress","Resolved"];
+  var AL="ABCDEFGHJKMNPQRSTUVWXYZ23456789";
+  var $=function(i){return document.getElementById(i)};
+  var items=[],cat=null,col=null,me="local";
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+  function loadLocal(){try{items=JSON.parse(localStorage.getItem("oa-c")||"[]")}catch(e){items=[]}}
+  function saveLocal(){try{localStorage.setItem("oa-c",JSON.stringify(items))}catch(e){}}
+  function ago(t){var m=Math.round((Date.now()-t)/60000);return m<1?"just now":m<60?m+" min ago":m<1440?Math.round(m/60)+" h ago":Math.round(m/1440)+" days ago"}
+  function mode(live){$("mode").textContent=live?"Live: complaints are shared with everyone who opens this page.":"Demo mode: complaints are saved only on this device."}
+  function card(c,dept){
+    var s=c.status|0;
+    return '<div class="item"><div class="top"><b>'+esc(c.id)+'</b><span class="hint" style="margin:0">'+ago(c.createdAt)+'</span></div>'+
+    '<div class="stat">'+esc(c.category)+', '+esc(c.ward)+'</div><p>'+esc(c.text)+'</p>'+
+    '<div class="steps" aria-hidden="true">'+STEPS.map(function(_,i){return '<i class="'+(i<=s?'f':'')+'"></i>'}).join("")+'</div>'+
+    '<span class="stat">'+STEPS[s]+'</span>'+
+    (dept&&s<3?'<br><button class="btn sm" data-adv="'+esc(c.id)+'">Mark as '+STEPS[s+1].toLowerCase()+'</button>':'')+'</div>';
+  }
+  function render(){
+    var mine=items.filter(function(c){return c.by===me});
+    $("mine").innerHTML=mine.length?mine.map(function(c){return card(c,false)}).join(""):'<p class="hint">Nothing filed yet. Pick a category above to start.</p>';
+    $("all").innerHTML=items.length?items.map(function(c){return card(c,true)}).join(""):'<p class="hint">No complaints yet. File one from the Citizen view.</p>';
+  }
+  $("cats").innerHTML=CATS.map(function(c,i){return '<button data-c="'+i+'" aria-pressed="false">'+c+'</button>'}).join("");
+  $("cats").onclick=function(e){
+    var b=e.target.closest("button");if(!b)return;
+    cat=CATS[+b.getAttribute("data-c")];
+    [].forEach.call($("cats").children,function(x){x.setAttribute("aria-pressed",String(x===b))});
+    $("fTitle").textContent=cat+" complaint";$("form").hidden=false;$("done").hidden=true;$("fWard").focus();
+  };
+  function fail(){$("done").hidden=false;$("done").textContent="Could not save. This account may be view-only on this page. Ask the owner for contributor access."}
+  $("form").onsubmit=function(e){
+    e.preventDefault();
+    var id="OA-";for(var i=0;i<5;i++)id+=AL[Math.floor(Math.random()*AL.length)];
+    var c={id:id,category:cat,ward:$("fWard").value.trim(),text:$("fText").value.trim(),status:0,createdAt:Date.now(),by:me};
+    var p;
+    if(col){p=col.doc(id).set(c)}else{items.unshift(c);saveLocal();render();p=Promise.resolve()}
+    p.then(function(){
+      $("form").reset();$("form").hidden=true;cat=null;
+      [].forEach.call($("cats").children,function(x){x.setAttribute("aria-pressed","false")});
+      $("done").hidden=false;$("done").innerHTML='Complaint filed. Your ID is <b>'+id+'</b>. Use it to track the status.';
+      $("tId").value=id;
+    }).catch(fail);
+  };
+  function track(){
+    var id=$("tId").value.trim().toUpperCase(),c=items.filter(function(x){return x.id===id})[0];
+    $("tOut").innerHTML=c?card(c,false):'<p class="hint">No complaint found with that ID. Check it and try again.</p>';
+  }
+  $("tGo").onclick=track;
+  $("tId").onkeydown=function(e){if(e.key==="Enter")track()};
+  $("all").onclick=function(e){
+    var b=e.target.closest("[data-adv]");if(!b)return;
+    var id=b.getAttribute("data-adv"),c=items.filter(function(x){return x.id===id})[0];if(!c)return;
+    var n=(c.status|0)+1;
+    if(col){col.doc(id).update({status:n,updatedAt:Date.now()}).catch(function(){$("mode").textContent="Could not update. This account may be view-only on this page."})}
+    else{c.status=n;saveLocal();render()}
+  };
+  function role(d){
+    $("cView").hidden=d;$("dView").hidden=!d;
+    $("rC").setAttribute("aria-pressed",String(!d));$("rD").setAttribute("aria-pressed",String(d));
+  }
+  $("rC").onclick=function(){role(false)};$("rD").onclick=function(){role(true)};
+  $("goFile").onclick=function(){role(false);setTimeout(function(){$("cats").firstChild.focus({preventScroll:true})},400)};
+  $("goTrack").onclick=function(){role(false);setTimeout(function(){$("tId").focus({preventScroll:true})},400)};
+  loadLocal();mode(false);render();
+  (async function(){
+    try{
+      if(!(window.claude&&claude.use))return;
+      var db=await claude.use("db");if(!db)return;
+      var u=await claude.use("user"),uid=u&&u.id?await u.id():null;
+      if(uid)me=uid;
+      col=db.collection("complaints");
+      col.orderBy("createdAt","desc").onSnapshot(function(s){
+        items=s.docs.map(function(d){var o=Object.assign({},d.data());o.id=d.id;return o});
+        mode(true);render();
+      },function(){col=null;me="local";loadLocal();mode(false);render()});
+    }catch(e){}
+  })();
+})();
+</script>
+<script>
+(function(){
+  var S=["Complaints","Payments","Certificates","Permits","Public information","Service tracking"];
+  var A=[[150,34],[262,86],[118,132],[196,200],[132,262],[240,288]];
+  var B=S.map(function(_,i){return [218,40+i*48]});
+  var svg=document.getElementById("stage"),cap=document.getElementById("cap");
+  var N="http://www.w3.org/2000/svg",els=[],hub,hubLine,p=0,raf,reduce=matchMedia("(prefers-reduced-motion: reduce)").matches,touched=false;
+  function mk(t,c,par){var e=document.createElementNS(N,t);if(c)e.setAttribute("class",c);(par||svg).appendChild(e);return e}
+  S.forEach(function(s,i){
+    var o={old:mk("path","ln"),nw:mk("path","ln2"),key:mk("rect","key"),dot:mk("circle","dot"),txt:mk("text")};
+    o.key.setAttribute("width",10);o.key.setAttribute("height",10);o.key.setAttribute("rx",2);
+    o.dot.setAttribute("r",4);o.txt.textContent=s;els.push(o);
+  });
+  hubLine=mk("path","ln2");hubLine.setAttribute("d","M58 160L100 160");
+  hub=mk("g");mk("rect","hubr",hub).setAttributeNS(null,"x",100);
+  var hr=hub.firstChild;hr.setAttribute("y",144);hr.setAttribute("width",64);hr.setAttribute("height",32);hr.setAttribute("rx",4);
+  var ht=mk("text","hubt",hub);ht.setAttribute("x",132);ht.setAttribute("y",164);ht.setAttribute("text-anchor","middle");ht.style.fontSize="13px";ht.textContent="Account";
+  var yc=mk("circle","you");yc.setAttribute("cx",40);yc.setAttribute("cy",160);yc.setAttribute("r",18);
+  var yt=mk("text","hubt");yt.setAttribute("x",40);yt.setAttribute("y",165);yt.setAttribute("text-anchor","middle");yt.style.fontSize="13px";yt.textContent="You";
+  function ease(x){return x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2}
+  function draw(g){
+    els.forEach(function(o,i){
+      var q=ease(Math.min(1,Math.max(0,g*1.6-i*.12)));
+      var x=A[i][0]+(B[i][0]-A[i][0])*q,y=A[i][1]+(B[i][1]-A[i][1])*q;
+      o.dot.setAttribute("cx",x);o.dot.setAttribute("cy",y);
+      o.txt.setAttribute("x",x+14);o.txt.setAttribute("y",y+5);
+      o.old.setAttribute("d","M58 160L"+x+" "+y);o.old.style.opacity=1-q;
+      o.key.setAttribute("x",(58+x)/2-5);o.key.setAttribute("y",(160+y)/2-5);o.key.style.opacity=1-q;
+      o.nw.setAttribute("d","M164 160L"+x+" "+y);o.nw.style.opacity=q;
+    });
+    hub.style.opacity=g;hubLine.style.opacity=g;
+  }
+  function go(to){
+    cancelAnimationFrame(raf);
+    document.getElementById("bOld").setAttribute("aria-pressed",String(to===0));
+    document.getElementById("bOne").setAttribute("aria-pressed",String(to===1));
+    cap.textContent=to?"Six services. One account.":"Six services. Six separate logins.";
+    if(reduce){p=to;draw(p);return}
+    var from=p,t0=null;
+    function step(t){
+      if(t0===null)t0=t;
+      var k=Math.min(1,(t-t0)/1700);
+      p=from+(to-from)*k;draw(p);
+      if(k<1)raf=requestAnimationFrame(step);
+    }
+    raf=requestAnimationFrame(step);
+  }
+  document.getElementById("bOld").onclick=function(){touched=true;go(0)};
+  document.getElementById("bOne").onclick=function(){touched=true;go(1)};
+  draw(0);cap.textContent="Six services. Six separate logins.";
+  setTimeout(function(){if(!touched)go(1)},1100);
+})();
+</script>
+</body>
+</html>
